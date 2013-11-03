@@ -234,6 +234,7 @@ ul#menu {
 /* page titles */
 hgroup.title {
     margin-bottom: 10px;
+    clear: both;
 }
 
 hgroup.title h1, hgroup.title h2 {

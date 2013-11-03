@@ -46,8 +46,9 @@ namespace DonorDatabase.Controllers
         //
         // POST: /Account/LogOff
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+        // The following prevent a logoff to be perform via a simple <a> tag. If security is a concern, restore these and create a logoff form.
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
         public ActionResult LogOff()
         {
             WebSecurity.Logout();

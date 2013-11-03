@@ -3,10 +3,11 @@
     ViewBag.Title = "Register";
 }
 
-<hgroup class="title">
-    <h1>@ViewBag.Title.</h1>
-    <h2>Create a new account.</h2>
-</hgroup>
+<div id="body">
+    <section class="content-wrapper clear-fix">
+    <hgroup class="title">
+        <h2>Create a new user account</h2>
+    </hgroup>
 
 @using (Html.BeginForm()) {
     @Html.AntiForgeryToken()
@@ -31,6 +32,8 @@
         <input type="submit" value="Register" />
     </fieldset>
 }
+    </section>
+</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

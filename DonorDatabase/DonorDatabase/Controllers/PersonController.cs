@@ -17,10 +17,18 @@ namespace DonorManagement.Controllers
 
         // GET api/Person
         [Authorize]
-        public IEnumerable<Person> GetPeople()
+        public IEnumerable<object> GetPeople()
         {
             var people = db.People;
-            return people.AsEnumerable();
+            return people.Select(p=> new {
+                FirstName = p.FirstName,
+                LastName = p.LastName,
+                OrgName = p.OrgName,
+                PersonID = p.PersonID,
+                PersonType = p.PersonType,
+                Suffix = p.Suffix,
+                Title = p.Title
+            }).AsEnumerable();
         }
 
         // GET api/Person/5

@@ -10,7 +10,8 @@ namespace DonorDatabase.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            return Redirect("/index.html");
+            //return View();
         }
     }
 }
