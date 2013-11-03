@@ -1,0 +1,837 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="donordatabaseModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="donordatabaseModelStoreContainer">
+          <EntitySet Name="Contact" EntityType="donordatabaseModel.Store.Contact" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Donation" EntityType="donordatabaseModel.Store.Donation" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Interest" EntityType="donordatabaseModel.Store.Interest" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="LOV" EntityType="donordatabaseModel.Store.LOV" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="LOVType" EntityType="donordatabaseModel.Store.LOVType" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Person" EntityType="donordatabaseModel.Store.Person" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_Contact_Donation" Association="donordatabaseModel.Store.FK_Contact_Donation">
+            <End Role="Donation" EntitySet="Donation" />
+            <End Role="Contact" EntitySet="Contact" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contact_LOV_Channel" Association="donordatabaseModel.Store.FK_Contact_LOV_Channel">
+            <End Role="LOV" EntitySet="LOV" />
+            <End Role="Contact" EntitySet="Contact" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contact_LOV_FundRaiser" Association="donordatabaseModel.Store.FK_Contact_LOV_FundRaiser">
+            <End Role="LOV" EntitySet="LOV" />
+            <End Role="Contact" EntitySet="Contact" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contact_LOV_Outcome" Association="donordatabaseModel.Store.FK_Contact_LOV_Outcome">
+            <End Role="LOV" EntitySet="LOV" />
+            <End Role="Contact" EntitySet="Contact" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contact_Person" Association="donordatabaseModel.Store.FK_Contact_Person">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="Contact" EntitySet="Contact" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Donation_LOV" Association="donordatabaseModel.Store.FK_Donation_LOV">
+            <End Role="LOV" EntitySet="LOV" />
+            <End Role="Donation" EntitySet="Donation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Donation_Person" Association="donordatabaseModel.Store.FK_Donation_Person">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="Donation" EntitySet="Donation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Interest_LOV" Association="donordatabaseModel.Store.FK_Interest_LOV">
+            <End Role="LOV" EntitySet="LOV" />
+            <End Role="Interest" EntitySet="Interest" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Interest_Person" Association="donordatabaseModel.Store.FK_Interest_Person">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="Interest" EntitySet="Interest" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LOV_LOVType" Association="donordatabaseModel.Store.FK_LOV_LOVType">
+            <End Role="LOVType" EntitySet="LOVType" />
+            <End Role="LOV" EntitySet="LOV" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Person_LOV_ContactPreference" Association="donordatabaseModel.Store.FK_Person_LOV_ContactPreference">
+            <End Role="LOV" EntitySet="LOV" />
+            <End Role="Person" EntitySet="Person" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Person_LOV_Gender" Association="donordatabaseModel.Store.FK_Person_LOV_Gender">
+            <End Role="LOV" EntitySet="LOV" />
+            <End Role="Person" EntitySet="Person" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Person_LOV_PersonType" Association="donordatabaseModel.Store.FK_Person_LOV_PersonType">
+            <End Role="LOV" EntitySet="LOV" />
+            <End Role="Person" EntitySet="Person" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Person_LOV_PhoneType1" Association="donordatabaseModel.Store.FK_Person_LOV_PhoneType1">
+            <End Role="LOV" EntitySet="LOV" />
+            <End Role="Person" EntitySet="Person" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Person_LOV_PhoneType2" Association="donordatabaseModel.Store.FK_Person_LOV_PhoneType2">
+            <End Role="LOV" EntitySet="LOV" />
+            <End Role="Person" EntitySet="Person" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Person_LOV_PhoneType3" Association="donordatabaseModel.Store.FK_Person_LOV_PhoneType3">
+            <End Role="LOV" EntitySet="LOV" />
+            <End Role="Person" EntitySet="Person" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Contact">
+          <Key>
+            <PropertyRef Name="ContactID" />
+          </Key>
+          <Property Name="ContactID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="PersonID" Type="int" Nullable="false" />
+          <Property Name="Channel" Type="int" Nullable="false" />
+          <Property Name="FundRaiser" Type="int" Nullable="false" />
+          <Property Name="Outcome" Type="int" />
+          <Property Name="Notes" Type="nvarchar" MaxLength="500" />
+          <Property Name="ScheduleDate" Type="date" Nullable="false" />
+          <Property Name="CompleteDate" Type="date" />
+          <Property Name="DonationID" Type="int" />
+        </EntityType>
+        <EntityType Name="Donation">
+          <Key>
+            <PropertyRef Name="DonationID" />
+          </Key>
+          <Property Name="DonationID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="PersonID" Type="int" Nullable="false" />
+          <Property Name="Amount" Type="decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="DonationDate" Type="date" Nullable="false" />
+          <Property Name="Source" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Interest">
+          <Key>
+            <PropertyRef Name="InterestID" />
+          </Key>
+          <Property Name="InterestID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="PersonID" Type="int" Nullable="false" />
+          <Property Name="Interest" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LOV">
+          <Key>
+            <PropertyRef Name="LOVID" />
+          </Key>
+          <Property Name="LOVID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="LOVTypeID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="DisplayOrder" Type="int" Nullable="false" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LOVType">
+          <Key>
+            <PropertyRef Name="LOVTypeID" />
+          </Key>
+          <Property Name="LOVTypeID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="LOVName" Type="nvarchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Person">
+          <Key>
+            <PropertyRef Name="PersonID" />
+          </Key>
+          <Property Name="PersonID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="PersonType" Type="int" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="10" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastName" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Suffix" Type="nvarchar" MaxLength="10" />
+          <Property Name="Gender" Type="int" Nullable="false" />
+          <Property Name="OrgName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Address1" Type="nvarchar" MaxLength="50" />
+          <Property Name="Address2" Type="nvarchar" MaxLength="50" />
+          <Property Name="City" Type="nvarchar" MaxLength="50" />
+          <Property Name="State" Type="nvarchar" MaxLength="2" />
+          <Property Name="Zip" Type="nvarchar" MaxLength="15" />
+          <Property Name="County" Type="nvarchar" MaxLength="50" />
+          <Property Name="EmailAddress" Type="nvarchar" MaxLength="255" />
+          <Property Name="Phone1" Type="nvarchar" MaxLength="20" />
+          <Property Name="PhoneType1" Type="int" />
+          <Property Name="Phone2" Type="nvarchar" MaxLength="20" />
+          <Property Name="PhoneType2" Type="int" />
+          <Property Name="Phone3" Type="nvarchar" MaxLength="20" />
+          <Property Name="PhoneType3" Type="int" />
+          <Property Name="ContactPreference" Type="int" />
+          <Property Name="FamilyInfo" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <Association Name="FK_Contact_Donation">
+          <End Role="Donation" Type="donordatabaseModel.Store.Donation" Multiplicity="0..1" />
+          <End Role="Contact" Type="donordatabaseModel.Store.Contact" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Donation">
+              <PropertyRef Name="DonationID" />
+            </Principal>
+            <Dependent Role="Contact">
+              <PropertyRef Name="DonationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contact_LOV_Channel">
+          <End Role="LOV" Type="donordatabaseModel.Store.LOV" Multiplicity="1" />
+          <End Role="Contact" Type="donordatabaseModel.Store.Contact" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LOV">
+              <PropertyRef Name="LOVID" />
+            </Principal>
+            <Dependent Role="Contact">
+              <PropertyRef Name="Channel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contact_LOV_FundRaiser">
+          <End Role="LOV" Type="donordatabaseModel.Store.LOV" Multiplicity="1" />
+          <End Role="Contact" Type="donordatabaseModel.Store.Contact" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LOV">
+              <PropertyRef Name="LOVID" />
+            </Principal>
+            <Dependent Role="Contact">
+              <PropertyRef Name="FundRaiser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contact_LOV_Outcome">
+          <End Role="LOV" Type="donordatabaseModel.Store.LOV" Multiplicity="0..1" />
+          <End Role="Contact" Type="donordatabaseModel.Store.Contact" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LOV">
+              <PropertyRef Name="LOVID" />
+            </Principal>
+            <Dependent Role="Contact">
+              <PropertyRef Name="Outcome" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contact_Person">
+          <End Role="Person" Type="donordatabaseModel.Store.Person" Multiplicity="1" />
+          <End Role="Contact" Type="donordatabaseModel.Store.Contact" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="Contact">
+              <PropertyRef Name="PersonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Donation_LOV">
+          <End Role="LOV" Type="donordatabaseModel.Store.LOV" Multiplicity="1" />
+          <End Role="Donation" Type="donordatabaseModel.Store.Donation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LOV">
+              <PropertyRef Name="LOVID" />
+            </Principal>
+            <Dependent Role="Donation">
+              <PropertyRef Name="Source" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Donation_Person">
+          <End Role="Person" Type="donordatabaseModel.Store.Person" Multiplicity="1" />
+          <End Role="Donation" Type="donordatabaseModel.Store.Donation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="Donation">
+              <PropertyRef Name="PersonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Interest_LOV">
+          <End Role="LOV" Type="donordatabaseModel.Store.LOV" Multiplicity="1" />
+          <End Role="Interest" Type="donordatabaseModel.Store.Interest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LOV">
+              <PropertyRef Name="LOVID" />
+            </Principal>
+            <Dependent Role="Interest">
+              <PropertyRef Name="Interest" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Interest_Person">
+          <End Role="Person" Type="donordatabaseModel.Store.Person" Multiplicity="1" />
+          <End Role="Interest" Type="donordatabaseModel.Store.Interest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="Interest">
+              <PropertyRef Name="PersonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LOV_LOVType">
+          <End Role="LOVType" Type="donordatabaseModel.Store.LOVType" Multiplicity="1" />
+          <End Role="LOV" Type="donordatabaseModel.Store.LOV" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LOVType">
+              <PropertyRef Name="LOVTypeID" />
+            </Principal>
+            <Dependent Role="LOV">
+              <PropertyRef Name="LOVTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Person_LOV_ContactPreference">
+          <End Role="LOV" Type="donordatabaseModel.Store.LOV" Multiplicity="0..1" />
+          <End Role="Person" Type="donordatabaseModel.Store.Person" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LOV">
+              <PropertyRef Name="LOVID" />
+            </Principal>
+            <Dependent Role="Person">
+              <PropertyRef Name="ContactPreference" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Person_LOV_Gender">
+          <End Role="LOV" Type="donordatabaseModel.Store.LOV" Multiplicity="1" />
+          <End Role="Person" Type="donordatabaseModel.Store.Person" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LOV">
+              <PropertyRef Name="LOVID" />
+            </Principal>
+            <Dependent Role="Person">
+              <PropertyRef Name="Gender" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Person_LOV_PersonType">
+          <End Role="LOV" Type="donordatabaseModel.Store.LOV" Multiplicity="1" />
+          <End Role="Person" Type="donordatabaseModel.Store.Person" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LOV">
+              <PropertyRef Name="LOVID" />
+            </Principal>
+            <Dependent Role="Person">
+              <PropertyRef Name="PersonType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Person_LOV_PhoneType1">
+          <End Role="LOV" Type="donordatabaseModel.Store.LOV" Multiplicity="0..1" />
+          <End Role="Person" Type="donordatabaseModel.Store.Person" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LOV">
+              <PropertyRef Name="LOVID" />
+            </Principal>
+            <Dependent Role="Person">
+              <PropertyRef Name="PhoneType1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Person_LOV_PhoneType2">
+          <End Role="LOV" Type="donordatabaseModel.Store.LOV" Multiplicity="0..1" />
+          <End Role="Person" Type="donordatabaseModel.Store.Person" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LOV">
+              <PropertyRef Name="LOVID" />
+            </Principal>
+            <Dependent Role="Person">
+              <PropertyRef Name="PhoneType2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Person_LOV_PhoneType3">
+          <End Role="LOV" Type="donordatabaseModel.Store.LOV" Multiplicity="0..1" />
+          <End Role="Person" Type="donordatabaseModel.Store.Person" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LOV">
+              <PropertyRef Name="LOVID" />
+            </Principal>
+            <Dependent Role="Person">
+              <PropertyRef Name="PhoneType3" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="donordatabaseModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="donordatabaseEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Contacts" EntityType="donordatabaseModel.Contact" />
+          <EntitySet Name="Donations" EntityType="donordatabaseModel.Donation" />
+          <EntitySet Name="Interests" EntityType="donordatabaseModel.Interest" />
+          <EntitySet Name="LOVs" EntityType="donordatabaseModel.LOV" />
+          <EntitySet Name="LOVTypes" EntityType="donordatabaseModel.LOVType" />
+          <EntitySet Name="People" EntityType="donordatabaseModel.Person" />
+          <AssociationSet Name="FK_Contact_Donation" Association="donordatabaseModel.FK_Contact_Donation">
+            <End Role="Donation" EntitySet="Donations" />
+            <End Role="Contact" EntitySet="Contacts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contact_LOV_Channel" Association="donordatabaseModel.FK_Contact_LOV_Channel">
+            <End Role="LOV" EntitySet="LOVs" />
+            <End Role="Contact" EntitySet="Contacts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contact_LOV_FundRaiser" Association="donordatabaseModel.FK_Contact_LOV_FundRaiser">
+            <End Role="LOV" EntitySet="LOVs" />
+            <End Role="Contact" EntitySet="Contacts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contact_LOV_Outcome" Association="donordatabaseModel.FK_Contact_LOV_Outcome">
+            <End Role="LOV" EntitySet="LOVs" />
+            <End Role="Contact" EntitySet="Contacts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contact_Person" Association="donordatabaseModel.FK_Contact_Person">
+            <End Role="Person" EntitySet="People" />
+            <End Role="Contact" EntitySet="Contacts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Donation_LOV" Association="donordatabaseModel.FK_Donation_LOV">
+            <End Role="LOV" EntitySet="LOVs" />
+            <End Role="Donation" EntitySet="Donations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Donation_Person" Association="donordatabaseModel.FK_Donation_Person">
+            <End Role="Person" EntitySet="People" />
+            <End Role="Donation" EntitySet="Donations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Interest_LOV" Association="donordatabaseModel.FK_Interest_LOV">
+            <End Role="LOV" EntitySet="LOVs" />
+            <End Role="Interest" EntitySet="Interests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Interest_Person" Association="donordatabaseModel.FK_Interest_Person">
+            <End Role="Person" EntitySet="People" />
+            <End Role="Interest" EntitySet="Interests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LOV_LOVType" Association="donordatabaseModel.FK_LOV_LOVType">
+            <End Role="LOVType" EntitySet="LOVTypes" />
+            <End Role="LOV" EntitySet="LOVs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Person_LOV_ContactPreference" Association="donordatabaseModel.FK_Person_LOV_ContactPreference">
+            <End Role="LOV" EntitySet="LOVs" />
+            <End Role="Person" EntitySet="People" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Person_LOV_Gender" Association="donordatabaseModel.FK_Person_LOV_Gender">
+            <End Role="LOV" EntitySet="LOVs" />
+            <End Role="Person" EntitySet="People" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Person_LOV_PersonType" Association="donordatabaseModel.FK_Person_LOV_PersonType">
+            <End Role="LOV" EntitySet="LOVs" />
+            <End Role="Person" EntitySet="People" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Person_LOV_PhoneType1" Association="donordatabaseModel.FK_Person_LOV_PhoneType1">
+            <End Role="LOV" EntitySet="LOVs" />
+            <End Role="Person" EntitySet="People" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Person_LOV_PhoneType2" Association="donordatabaseModel.FK_Person_LOV_PhoneType2">
+            <End Role="LOV" EntitySet="LOVs" />
+            <End Role="Person" EntitySet="People" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Person_LOV_PhoneType3" Association="donordatabaseModel.FK_Person_LOV_PhoneType3">
+            <End Role="LOV" EntitySet="LOVs" />
+            <End Role="Person" EntitySet="People" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Contact">
+          <Key>
+            <PropertyRef Name="ContactID" />
+          </Key>
+          <Property Name="ContactID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PersonID" Type="Int32" Nullable="false" />
+          <Property Name="Channel" Type="Int32" Nullable="false" />
+          <Property Name="FundRaiser" Type="Int32" Nullable="false" />
+          <Property Name="Outcome" Type="Int32" />
+          <Property Name="Notes" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="ScheduleDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="CompleteDate" Type="DateTime" Precision="0" />
+          <Property Name="DonationID" Type="Int32" />
+          <NavigationProperty Name="Donation" Relationship="donordatabaseModel.FK_Contact_Donation" FromRole="Contact" ToRole="Donation" />
+          <NavigationProperty Name="LOV_Channel" Relationship="donordatabaseModel.FK_Contact_LOV_Channel" FromRole="Contact" ToRole="LOV" />
+          <NavigationProperty Name="LOV_Fundraiser" Relationship="donordatabaseModel.FK_Contact_LOV_FundRaiser" FromRole="Contact" ToRole="LOV" />
+          <NavigationProperty Name="LOV_Outcome" Relationship="donordatabaseModel.FK_Contact_LOV_Outcome" FromRole="Contact" ToRole="LOV" />
+          <NavigationProperty Name="Person" Relationship="donordatabaseModel.FK_Contact_Person" FromRole="Contact" ToRole="Person" a:GetterAccess="Private" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" a:SetterAccess="Private" />
+        </EntityType>
+        <EntityType Name="Donation">
+          <Key>
+            <PropertyRef Name="DonationID" />
+          </Key>
+          <Property Name="DonationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PersonID" Type="Int32" Nullable="false" />
+          <Property Name="Amount" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="DonationDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Source" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Contacts" Relationship="donordatabaseModel.FK_Contact_Donation" FromRole="Donation" ToRole="Contact" a:GetterAccess="Private" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" a:SetterAccess="Private" />
+          <NavigationProperty Name="LOV_Source" Relationship="donordatabaseModel.FK_Donation_LOV" FromRole="Donation" ToRole="LOV" />
+          <NavigationProperty Name="Person" Relationship="donordatabaseModel.FK_Donation_Person" FromRole="Donation" ToRole="Person" a:GetterAccess="Private" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" a:SetterAccess="Private" />
+        </EntityType>
+        <EntityType Name="Interest">
+          <Key>
+            <PropertyRef Name="InterestID" />
+          </Key>
+          <Property Name="InterestID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PersonID" Type="Int32" Nullable="false" />
+          <Property Name="Interest1" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="LOV" Relationship="donordatabaseModel.FK_Interest_LOV" FromRole="Interest" ToRole="LOV" />
+          <NavigationProperty Name="Person" Relationship="donordatabaseModel.FK_Interest_Person" FromRole="Interest" ToRole="Person" a:GetterAccess="Private" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" a:SetterAccess="Private" />
+        </EntityType>
+        <EntityType Name="LOV">
+          <Key>
+            <PropertyRef Name="LOVID" />
+          </Key>
+          <Property Name="LOVID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LOVTypeID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="DisplayOrder" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Contacts" Relationship="donordatabaseModel.FK_Contact_LOV_Channel" FromRole="LOV" ToRole="Contact" a:GetterAccess="Private" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" a:SetterAccess="Private" />
+          <NavigationProperty Name="Contacts1" Relationship="donordatabaseModel.FK_Contact_LOV_FundRaiser" FromRole="LOV" ToRole="Contact" a:GetterAccess="Private" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" a:SetterAccess="Private" />
+          <NavigationProperty Name="Contacts2" Relationship="donordatabaseModel.FK_Contact_LOV_Outcome" FromRole="LOV" ToRole="Contact" a:GetterAccess="Private" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" a:SetterAccess="Private" />
+          <NavigationProperty Name="Donations" Relationship="donordatabaseModel.FK_Donation_LOV" FromRole="LOV" ToRole="Donation" a:GetterAccess="Private" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" a:SetterAccess="Private" />
+          <NavigationProperty Name="Interests" Relationship="donordatabaseModel.FK_Interest_LOV" FromRole="LOV" ToRole="Interest" a:GetterAccess="Private" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" a:SetterAccess="Private" />
+          <NavigationProperty Name="LOVType" Relationship="donordatabaseModel.FK_LOV_LOVType" FromRole="LOV" ToRole="LOVType" a:GetterAccess="Private" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" a:SetterAccess="Private" />
+          <NavigationProperty Name="People" Relationship="donordatabaseModel.FK_Person_LOV_ContactPreference" FromRole="LOV" ToRole="Person" a:GetterAccess="Private" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" a:SetterAccess="Private" />
+          <NavigationProperty Name="People1" Relationship="donordatabaseModel.FK_Person_LOV_Gender" FromRole="LOV" ToRole="Person" a:GetterAccess="Private" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" a:SetterAccess="Private" />
+          <NavigationProperty Name="People2" Relationship="donordatabaseModel.FK_Person_LOV_PersonType" FromRole="LOV" ToRole="Person" a:GetterAccess="Private" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" a:SetterAccess="Private" />
+          <NavigationProperty Name="People3" Relationship="donordatabaseModel.FK_Person_LOV_PhoneType1" FromRole="LOV" ToRole="Person" a:GetterAccess="Private" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" a:SetterAccess="Private" />
+          <NavigationProperty Name="People4" Relationship="donordatabaseModel.FK_Person_LOV_PhoneType2" FromRole="LOV" ToRole="Person" a:GetterAccess="Private" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" a:SetterAccess="Private" />
+          <NavigationProperty Name="People5" Relationship="donordatabaseModel.FK_Person_LOV_PhoneType3" FromRole="LOV" ToRole="Person" a:GetterAccess="Private" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" a:SetterAccess="Private" />
+          <Property Type="Boolean" Name="Active" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LOVType">
+          <Key>
+            <PropertyRef Name="LOVTypeID" />
+          </Key>
+          <Property Name="LOVTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LOVName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="LOVs" Relationship="donordatabaseModel.FK_LOV_LOVType" FromRole="LOVType" ToRole="LOV" a:GetterAccess="Public" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" a:SetterAccess="Public" />
+        </EntityType>
+        <EntityType Name="Person">
+          <Key>
+            <PropertyRef Name="PersonID" />
+          </Key>
+          <Property Name="PersonID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PersonType" Type="Int32" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="FirstName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Suffix" Type="String" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="Gender" Type="Int32" Nullable="false" />
+          <Property Name="OrgName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Address1" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Address2" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="City" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="State" Type="String" MaxLength="2" Unicode="true" FixedLength="false" />
+          <Property Name="Zip" Type="String" MaxLength="15" Unicode="true" FixedLength="false" />
+          <Property Name="County" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="EmailAddress" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="Phone1" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="PhoneType1" Type="Int32" />
+          <Property Name="Phone2" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="PhoneType2" Type="Int32" />
+          <Property Name="Phone3" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="PhoneType3" Type="Int32" />
+          <Property Name="ContactPreference" Type="Int32" />
+          <Property Name="FamilyInfo" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Contacts" Relationship="donordatabaseModel.FK_Contact_Person" FromRole="Person" ToRole="Contact" />
+          <NavigationProperty Name="Donations" Relationship="donordatabaseModel.FK_Donation_Person" FromRole="Person" ToRole="Donation" />
+          <NavigationProperty Name="Interests" Relationship="donordatabaseModel.FK_Interest_Person" FromRole="Person" ToRole="Interest" />
+          <NavigationProperty Name="LOV_ContactPreference" Relationship="donordatabaseModel.FK_Person_LOV_ContactPreference" FromRole="Person" ToRole="LOV" />
+          <NavigationProperty Name="LOV_Gender" Relationship="donordatabaseModel.FK_Person_LOV_Gender" FromRole="Person" ToRole="LOV" />
+          <NavigationProperty Name="LOV_PersonType" Relationship="donordatabaseModel.FK_Person_LOV_PersonType" FromRole="Person" ToRole="LOV" />
+          <NavigationProperty Name="LOV_PhoneType1" Relationship="donordatabaseModel.FK_Person_LOV_PhoneType1" FromRole="Person" ToRole="LOV" />
+          <NavigationProperty Name="LOV_PhoneType2" Relationship="donordatabaseModel.FK_Person_LOV_PhoneType2" FromRole="Person" ToRole="LOV" />
+          <NavigationProperty Name="LOV_PhoneType3" Relationship="donordatabaseModel.FK_Person_LOV_PhoneType3" FromRole="Person" ToRole="LOV" />
+        </EntityType>
+        <Association Name="FK_Contact_Donation">
+          <End Role="Donation" Type="donordatabaseModel.Donation" Multiplicity="0..1" />
+          <End Role="Contact" Type="donordatabaseModel.Contact" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Donation">
+              <PropertyRef Name="DonationID" />
+            </Principal>
+            <Dependent Role="Contact">
+              <PropertyRef Name="DonationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contact_LOV_Channel">
+          <End Role="LOV" Type="donordatabaseModel.LOV" Multiplicity="1" />
+          <End Role="Contact" Type="donordatabaseModel.Contact" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LOV">
+              <PropertyRef Name="LOVID" />
+            </Principal>
+            <Dependent Role="Contact">
+              <PropertyRef Name="Channel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contact_LOV_FundRaiser">
+          <End Role="LOV" Type="donordatabaseModel.LOV" Multiplicity="1" />
+          <End Role="Contact" Type="donordatabaseModel.Contact" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LOV">
+              <PropertyRef Name="LOVID" />
+            </Principal>
+            <Dependent Role="Contact">
+              <PropertyRef Name="FundRaiser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contact_LOV_Outcome">
+          <End Role="LOV" Type="donordatabaseModel.LOV" Multiplicity="0..1" />
+          <End Role="Contact" Type="donordatabaseModel.Contact" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LOV">
+              <PropertyRef Name="LOVID" />
+            </Principal>
+            <Dependent Role="Contact">
+              <PropertyRef Name="Outcome" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contact_Person">
+          <End Role="Person" Type="donordatabaseModel.Person" Multiplicity="1" />
+          <End Role="Contact" Type="donordatabaseModel.Contact" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="Contact">
+              <PropertyRef Name="PersonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Donation_LOV">
+          <End Role="LOV" Type="donordatabaseModel.LOV" Multiplicity="1" />
+          <End Role="Donation" Type="donordatabaseModel.Donation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LOV">
+              <PropertyRef Name="LOVID" />
+            </Principal>
+            <Dependent Role="Donation">
+              <PropertyRef Name="Source" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Donation_Person">
+          <End Role="Person" Type="donordatabaseModel.Person" Multiplicity="1" />
+          <End Role="Donation" Type="donordatabaseModel.Donation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="Donation">
+              <PropertyRef Name="PersonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Interest_LOV">
+          <End Role="LOV" Type="donordatabaseModel.LOV" Multiplicity="1" />
+          <End Role="Interest" Type="donordatabaseModel.Interest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LOV">
+              <PropertyRef Name="LOVID" />
+            </Principal>
+            <Dependent Role="Interest">
+              <PropertyRef Name="Interest1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Interest_Person">
+          <End Role="Person" Type="donordatabaseModel.Person" Multiplicity="1" />
+          <End Role="Interest" Type="donordatabaseModel.Interest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="Interest">
+              <PropertyRef Name="PersonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LOV_LOVType">
+          <End Role="LOVType" Type="donordatabaseModel.LOVType" Multiplicity="1" />
+          <End Role="LOV" Type="donordatabaseModel.LOV" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LOVType">
+              <PropertyRef Name="LOVTypeID" />
+            </Principal>
+            <Dependent Role="LOV">
+              <PropertyRef Name="LOVTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Person_LOV_ContactPreference">
+          <End Role="LOV" Type="donordatabaseModel.LOV" Multiplicity="0..1" />
+          <End Role="Person" Type="donordatabaseModel.Person" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LOV">
+              <PropertyRef Name="LOVID" />
+            </Principal>
+            <Dependent Role="Person">
+              <PropertyRef Name="ContactPreference" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Person_LOV_Gender">
+          <End Role="LOV" Type="donordatabaseModel.LOV" Multiplicity="1" />
+          <End Role="Person" Type="donordatabaseModel.Person" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LOV">
+              <PropertyRef Name="LOVID" />
+            </Principal>
+            <Dependent Role="Person">
+              <PropertyRef Name="Gender" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Person_LOV_PersonType">
+          <End Role="LOV" Type="donordatabaseModel.LOV" Multiplicity="1" />
+          <End Role="Person" Type="donordatabaseModel.Person" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LOV">
+              <PropertyRef Name="LOVID" />
+            </Principal>
+            <Dependent Role="Person">
+              <PropertyRef Name="PersonType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Person_LOV_PhoneType1">
+          <End Role="LOV" Type="donordatabaseModel.LOV" Multiplicity="0..1" />
+          <End Role="Person" Type="donordatabaseModel.Person" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LOV">
+              <PropertyRef Name="LOVID" />
+            </Principal>
+            <Dependent Role="Person">
+              <PropertyRef Name="PhoneType1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Person_LOV_PhoneType2">
+          <End Role="LOV" Type="donordatabaseModel.LOV" Multiplicity="0..1" />
+          <End Role="Person" Type="donordatabaseModel.Person" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LOV">
+              <PropertyRef Name="LOVID" />
+            </Principal>
+            <Dependent Role="Person">
+              <PropertyRef Name="PhoneType2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Person_LOV_PhoneType3">
+          <End Role="LOV" Type="donordatabaseModel.LOV" Multiplicity="0..1" />
+          <End Role="Person" Type="donordatabaseModel.Person" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LOV">
+              <PropertyRef Name="LOVID" />
+            </Principal>
+            <Dependent Role="Person">
+              <PropertyRef Name="PhoneType3" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="donordatabaseModelStoreContainer" CdmEntityContainer="donordatabaseEntities">
+          <EntitySetMapping Name="Contacts">
+            <EntityTypeMapping TypeName="donordatabaseModel.Contact">
+              <MappingFragment StoreEntitySet="Contact">
+                <ScalarProperty Name="ContactID" ColumnName="ContactID" />
+                <ScalarProperty Name="PersonID" ColumnName="PersonID" />
+                <ScalarProperty Name="Channel" ColumnName="Channel" />
+                <ScalarProperty Name="FundRaiser" ColumnName="FundRaiser" />
+                <ScalarProperty Name="Outcome" ColumnName="Outcome" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="ScheduleDate" ColumnName="ScheduleDate" />
+                <ScalarProperty Name="CompleteDate" ColumnName="CompleteDate" />
+                <ScalarProperty Name="DonationID" ColumnName="DonationID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Donations">
+            <EntityTypeMapping TypeName="donordatabaseModel.Donation">
+              <MappingFragment StoreEntitySet="Donation">
+                <ScalarProperty Name="DonationID" ColumnName="DonationID" />
+                <ScalarProperty Name="PersonID" ColumnName="PersonID" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="DonationDate" ColumnName="DonationDate" />
+                <ScalarProperty Name="Source" ColumnName="Source" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Interests">
+            <EntityTypeMapping TypeName="donordatabaseModel.Interest">
+              <MappingFragment StoreEntitySet="Interest">
+                <ScalarProperty Name="InterestID" ColumnName="InterestID" />
+                <ScalarProperty Name="PersonID" ColumnName="PersonID" />
+                <ScalarProperty Name="Interest1" ColumnName="Interest" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LOVs">
+            <EntityTypeMapping TypeName="donordatabaseModel.LOV">
+              <MappingFragment StoreEntitySet="LOV">
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="LOVID" ColumnName="LOVID" />
+                <ScalarProperty Name="LOVTypeID" ColumnName="LOVTypeID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="DisplayOrder" ColumnName="DisplayOrder" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LOVTypes">
+            <EntityTypeMapping TypeName="donordatabaseModel.LOVType">
+              <MappingFragment StoreEntitySet="LOVType">
+                <ScalarProperty Name="LOVTypeID" ColumnName="LOVTypeID" />
+                <ScalarProperty Name="LOVName" ColumnName="LOVName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="People">
+            <EntityTypeMapping TypeName="donordatabaseModel.Person">
+              <MappingFragment StoreEntitySet="Person">
+                <ScalarProperty Name="PersonID" ColumnName="PersonID" />
+                <ScalarProperty Name="PersonType" ColumnName="PersonType" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Suffix" ColumnName="Suffix" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="OrgName" ColumnName="OrgName" />
+                <ScalarProperty Name="Address1" ColumnName="Address1" />
+                <ScalarProperty Name="Address2" ColumnName="Address2" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="Zip" ColumnName="Zip" />
+                <ScalarProperty Name="County" ColumnName="County" />
+                <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+                <ScalarProperty Name="Phone1" ColumnName="Phone1" />
+                <ScalarProperty Name="PhoneType1" ColumnName="PhoneType1" />
+                <ScalarProperty Name="Phone2" ColumnName="Phone2" />
+                <ScalarProperty Name="PhoneType2" ColumnName="PhoneType2" />
+                <ScalarProperty Name="Phone3" ColumnName="Phone3" />
+                <ScalarProperty Name="PhoneType3" ColumnName="PhoneType3" />
+                <ScalarProperty Name="ContactPreference" ColumnName="ContactPreference" />
+                <ScalarProperty Name="FamilyInfo" ColumnName="FamilyInfo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

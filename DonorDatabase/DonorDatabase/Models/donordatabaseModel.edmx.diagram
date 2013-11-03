@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="966a040c15614b0086282fde549fb6a9" Name="Diagram1">
+        <EntityTypeShape EntityType="donordatabaseModel.Contact" Width="1.5" PointX="7.5" PointY="15" IsExpanded="true" />
+        <EntityTypeShape EntityType="donordatabaseModel.Donation" Width="1.5" PointX="10.5" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="donordatabaseModel.Interest" Width="1.5" PointX="7.5" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="donordatabaseModel.LOV" Width="1.5" PointX="3" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="donordatabaseModel.LOVType" Width="1.5" PointX="0.75" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="donordatabaseModel.Person" Width="1.5" PointX="5.25" PointY="18" IsExpanded="true" />
+        <AssociationConnector Association="donordatabaseModel.FK_Contact_Donation" ManuallyRouted="false" />
+        <AssociationConnector Association="donordatabaseModel.FK_Contact_LOV_Channel" ManuallyRouted="false" />
+        <AssociationConnector Association="donordatabaseModel.FK_Contact_LOV_FundRaiser" ManuallyRouted="false" />
+        <AssociationConnector Association="donordatabaseModel.FK_Contact_LOV_Outcome" ManuallyRouted="false" />
+        <AssociationConnector Association="donordatabaseModel.FK_Contact_Person" ManuallyRouted="false" />
+        <AssociationConnector Association="donordatabaseModel.FK_Donation_LOV" ManuallyRouted="false" />
+        <AssociationConnector Association="donordatabaseModel.FK_Donation_Person" ManuallyRouted="false" />
+        <AssociationConnector Association="donordatabaseModel.FK_Interest_LOV" ManuallyRouted="false" />
+        <AssociationConnector Association="donordatabaseModel.FK_Interest_Person" ManuallyRouted="false" />
+        <AssociationConnector Association="donordatabaseModel.FK_LOV_LOVType" ManuallyRouted="false" />
+        <AssociationConnector Association="donordatabaseModel.FK_Person_LOV_ContactPreference" ManuallyRouted="false" />
+        <AssociationConnector Association="donordatabaseModel.FK_Person_LOV_Gender" ManuallyRouted="false" />
+        <AssociationConnector Association="donordatabaseModel.FK_Person_LOV_PersonType" ManuallyRouted="false" />
+        <AssociationConnector Association="donordatabaseModel.FK_Person_LOV_PhoneType1" ManuallyRouted="false" />
+        <AssociationConnector Association="donordatabaseModel.FK_Person_LOV_PhoneType2" ManuallyRouted="false" />
+        <AssociationConnector Association="donordatabaseModel.FK_Person_LOV_PhoneType3" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

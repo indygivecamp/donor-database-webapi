@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Donor Management Database</title>
+    <script src="Scripts/jquery-1.8.2.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $.ajax({
+                url: "/api/Contact",
+                type: "GET",
+                dataType: "json",
+                data: null,
+                cache: false,
+                async: true,
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    alert("Got it!");
+                    console.log(data);
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    alert(errorThrown, jqXHR, "Error");
+                }
+            });
+            $("#alert").html("there!");
+        });
+    </script>
+</head>
+<body>
+    Hello
+    <div id="alert"></div>
+</body>
+</html>
