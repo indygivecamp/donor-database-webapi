@@ -19,7 +19,7 @@ namespace DonorDatabase.Controllers
         [Authorize]
         public IEnumerable<Contact> GetOpenContact()
         {
-            return db.Contacts.Where(p => !p.CompleteDate.HasValue).AsEnumerable();
+            return db.Contacts.Where(p => !p.CompleteDate.HasValue).OrderByDescending(p => p.ScheduleDate).ThenBy(p => p.LOV_Fundraiser.Name).AsEnumerable();
         }
 
         protected override void Dispose(bool disposing)
